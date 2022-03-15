@@ -1,12 +1,16 @@
-node {
+pipeline {
     
 	  agent any
   tools {nodejs "node"}
 
+	environment{
+	registry="mrchelsea/testing-docker"
+	registryCredential='dockerhub'
+	dockerImage=''
+	}
     
-    def newApp
-    def registry = 'mrchelsea/testing-docker'
-    def registryCredential = 'dockerhub'
+    //def registry = 'mrchelsea/testing-docker'
+    //def registryCredential = 'dockerhub'
 	
 	stage('Git') {
 		git 'https://github.com/rahulguptaft9/node-todo-frontend'
@@ -18,20 +22,21 @@ node {
 		sh 'npm test'
 	}
 	stage('Building image') {
-        docker.withRegistry( 'https://' + registry, registryCredential ) {
-		    def buildName = registry + ":$BUILD_NUMBER"
-			newApp = docker.build buildName
-			newApp.push()
-        }
+		steps{
+			script{
+			 	dockerImage=docker.build registry	
+			}
+		}
 	}
 	stage('Registring image') {
-        docker.withRegistry( 'https://' + registry, registryCredential ) {
-    		newApp.push 'latest2'
-        }
+		steps{
+			script{
+				docker.withRegistry('',registryCredential){
+				dockerImage.push()
+				}
+			}
+		}
 	}
-    stage('Removing image') {
-        sh "docker rmi $registry:$BUILD_NUMBER"
-        sh "docker rmi $registry:latest"
-    }
+    
     
 }
