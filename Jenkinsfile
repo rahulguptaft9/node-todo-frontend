@@ -13,13 +13,19 @@ pipeline {
     //def registryCredential = 'dockerhub'
 	stages{
 	stage('Git') {
+		steps{
 		git 'https://github.com/rahulguptaft9/node-todo-frontend'
+		}	
 	}
 	stage('Build') {
+		steps{
 		sh 'npm install'
+		}	
 	}
 	stage('Test') {
+		steps{
 		sh 'npm test'
+		}
 	}
 	stage('Building image') {
 		steps{
