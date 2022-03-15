@@ -1,6 +1,7 @@
 node {
     
-	
+	  agent any
+  tools {nodejs "node"}
 
     env.AWS_ECR_LOGIN=true
     def newApp
