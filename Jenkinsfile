@@ -3,7 +3,7 @@ node {
 	  agent any
   tools {nodejs "node"}
 
-    env.AWS_ECR_LOGIN=true
+    
     def newApp
     def registry = 'mrchelsea/testing-docker'
     def registryCredential = 'dockerhub'
