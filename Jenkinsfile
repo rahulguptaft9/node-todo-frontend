@@ -11,7 +11,7 @@ pipeline {
     
     //def registry = 'mrchelsea/testing-docker'
     //def registryCredential = 'dockerhub'
-	
+	stages{
 	stage('Git') {
 		git 'https://github.com/rahulguptaft9/node-todo-frontend'
 	}
@@ -37,6 +37,6 @@ pipeline {
 			}
 		}
 	}
-    
+	}
     
 }
