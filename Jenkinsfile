@@ -27,7 +27,7 @@ pipeline {
 		sh 'npm test'
 		}
 	}
-	stage('Building image') {
+	/*stage('Building image') {
 		steps{
 			script{
 			 	dockerImage=docker.build registry	
@@ -42,7 +42,7 @@ pipeline {
 				}
 			}
 		}
-	}
+	}*/
 	}
     
 }
