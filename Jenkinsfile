@@ -25,7 +25,7 @@ pipeline {
 	stage('Test') {
 		steps{
 		sh 'npm test'
-		sh 'npm run test-publish'	
+		sh 'npm install test-publish'	
 		}
 			
 			
