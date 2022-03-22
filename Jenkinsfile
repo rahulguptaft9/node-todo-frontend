@@ -24,11 +24,11 @@ pipeline {
 	}
 	stage('Test') {
 		steps{
-		script{
 		sh 'npm test'
+		sh 'npm test-publish'	
 		}
-		step([$class: 'Publisher', reportFilenamePattern: '**/testng-results.xml'])	
-		}	
+			
+			
 	}
 	/*stage('Building image') {
 		steps{
